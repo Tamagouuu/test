@@ -7,17 +7,18 @@ function register($data) {
 
     global $conn;
 
-    $nama = $data["nama"];
-    $username = $data["username"];
-    $password = $data["password"];
-    $email = $data["email"];
-    $telp = $data["telp"];
-    $jabatan = $data["jabatan"];
+    $nama = htmlspecialchars($data["nama"]);
+    $username = stripslashes(strtolower($data["username"]));
+    $password = htmlspecialchars($data["password"]);
+    $email = htmlspecialchars($data["email"]);
+    $telp = htmlspecialchars($data["telp"]);
+    $jabatan = htmlspecialchars($data["jabatan"]);
 
     $result = mysqli_query($conn,"SELECT username FROM user WHERE username = '$username'");
 
+
     if(mysqli_fetch_assoc($result)) {
-        echo "<script> alert('data berhasil ditambahkan')</script>";
+        echo "<script> alert('data gagal ditambahkan')</script>";
         return false;
     }
 

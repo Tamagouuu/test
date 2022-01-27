@@ -1,7 +1,13 @@
 <?php 
-
-
+session_start();
 require "functions.php";
+
+
+$adm = "";
+
+if(isset($_SESSION["admin"])) {
+  $adm = true;
+}
 
 if(isset($_POST["submit"])) {
     if (register($_POST) > 0) {
@@ -49,12 +55,16 @@ if(isset($_POST["submit"])) {
         <input type="password" name="password" id="password" class="form-pass" placeholder="Password" />
       </div>
       <select name="jabatan" id="jabatan">
+        <option value="kosong">Pilih Jabatan</option>
         <option value="masyarakat">Masyarakat</option>
-        <option value="petugas">Petugas</option>
+        <?php if($adm) : ?>
+            <?php echo("<option value="."petugas".">Petugas</option>") ?>
+          <?php endif ?>
         <option value="tamu">Tamu</option>
       </select>
       <button class="btn-submit" type="submit" name="submit">Sign Up</button>
     </form>
+    <script src="script1.js"></script>
   </body>
 </html>
 

@@ -1,14 +1,16 @@
 <?php 
 session_start();
-
 if(!isset($_SESSION["petugas"])) {
-    if(isset($_SESSION["masyarakat"])) {
-        header("Location: masyarakat.php");
+    if(isset($_SESSION["admin"])) {
+        header("Location: admin.php");
         exit;
     } elseif(isset($_SESSION["tamu"])) {
         header("Location: tamu.php");
         exit;
-    }  else {
+    }  elseif(isset($_SESSION["masyarakat"])) {
+        header("Location: masyarakat.php");
+        exit;
+    } else {
         header("Location: login.php");
         exit;
     }

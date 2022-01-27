@@ -1,10 +1,11 @@
 <?php 
+
 session_start();
+
 require "functions.php";
 
 $id = $_SESSION["id"];
 $result = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user WHERE id = '$id'"));
-
 
 if(!isset($_SESSION["masyarakat"])) {
     if(isset($_SESSION["admin"])) {
@@ -22,19 +23,23 @@ if(!isset($_SESSION["masyarakat"])) {
     }
 }
 
+if(isset($_POST["submit"])) {
+    var_dump($_POST);
+}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masyarakat</title>
-</head>
-<body>
-    <h1>Selamat Datang Masyarakat <?= $result["nama"] ?></h1>
-    <a href="logout.php">Logout</a>
-    <a href="laporan.php">Laporkan Keluhan</a>
-</body>
-</html>
+<form action="" method="POST">
+<input type="hidden" name="iduser" id="iduser" value="<?php $id ?>">
+    <ul>
+        <li>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username">
+        </li>
+    </ul>
+</form>
+
+
+
+
+
+
